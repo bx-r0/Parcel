@@ -1,4 +1,4 @@
-<img align="right" src="./parcel.png"/>
+<img align="right" src="./parcel.png" width=250></img>
 # Parcel
 Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design to simulate common forms of network degradation.
 

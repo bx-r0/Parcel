@@ -7,7 +7,6 @@ Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design
 - Latency
 - Packet loss
 - Restricted bandwidth
-- Out of order packets
 - Packet surges
 
 ## Extra features
@@ -71,9 +70,6 @@ To filter for certain packets for a certain protocol the ```-tp``` is used:
 
 --rate-limit, -rl   <rate_bytes>            
     * Limits the throughput of the program
-    
---out-of-order, -o 
-    * Sets the mode to out of order that alters the order of incoming packets
     
 ## ---- Extra Optionals:
 

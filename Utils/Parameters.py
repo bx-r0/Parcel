@@ -43,10 +43,7 @@ def Usage():
 
 --rate-limit, -rl   <rate_bytes>            
     * Limits the throughput of the program
-    
---out-of-order, -o 
-    * Sets the mode to out of order that alters the order of incoming packets
-    
+
 ## ---- Extra Optionals:
 
 --target-packet, -tp    <packet-type>        

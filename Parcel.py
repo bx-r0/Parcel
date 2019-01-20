@@ -1,5 +1,7 @@
 # User created imports
-from Effects import Print, OutOfOrder, Surge, PacketLoss, Bandwidth, Latency
+from Effects import Print, OutOfOrder, Surge, PacketLoss, Latency
+from Effects.Bandwidth import DisplayBandwidth, LimitBandwidth
+
 import Utils.Parameters as Parameter
 from Utils.Terminal import Terminal
 
@@ -266,12 +268,6 @@ def parameters():
                         help=argparse.SUPPRESS,
                         type=int)
 
-    effect.add_argument('--combination', Parameter.cmd_combination,
-                        action='store',
-                        nargs=3,
-                        help=argparse.SUPPRESS,
-                        type=int)
-
     effect.add_argument('--display-bandwidth', Parameter.cmd_bandwidth,
                         action='store_true',
                         help=argparse.SUPPRESS)
@@ -281,16 +277,6 @@ def parameters():
                         dest='rate_limit',
                         help=argparse.SUPPRESS,
                         type=int)
-
-    effect.add_argument('--out-of-order', Parameter.cmd_outoforder,
-                        action='store_true',
-                        dest='order',
-                        help=argparse.SUPPRESS)
-
-    effect.add_argument('--edit-packets', Parameter.cmd_edit,
-                        action='store',
-                        dest='edit',
-                        help=argparse.SUPPRESS)
 
     # Extra parameters
     parser.add_argument('--target-packet', Parameter.cmd_target_packet,
@@ -327,17 +313,13 @@ def parameters():
         mode = surge
 
     elif args.display_bandwidth:
-        effectObject = Bandwidth.DisplayBandwidth.DisplayBandwidth()
+        effectObject = DisplayBandwidth.DisplayBandwidth()
         mode = track_bandwidth
 
     elif args.rate_limit:
         # Sets the bandwidth object with the specified bandwidth limit
-        effectObject = Bandwidth.LimitBandwidth.LimitBandwidth(bandwidth=args.rate_limit)
+        effectObject =LimitBandwidth.LimitBandwidth(bandwidth=args.rate_limit)
         mode = limit_bandwidth
-
-    elif args.order:
-        effectObject = OutOfOrder.Order()
-        mode = out_of_order
 
     if args.save:
         print_force(

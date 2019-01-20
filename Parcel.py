@@ -25,23 +25,6 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 # Defines how many threads are in the pool
 pool = Pool(2000)
 
-logo = """
-==============================================================
-Degraded Packet Simulation
-
-    ██████╗ ██████╗ ███████╗
-    ██╔══██╗██╔══██╗██╔════╝
-    ██║  ██║██████╔╝███████╗
-    ██║  ██║██╔═══╝ ╚════██║
-    ██████╔╝██║     ███████║
-    ╚═════╝ ╚═╝     ╚══════╝
-"""
-
-epilog = """
-Aidan Fray
-==============================================================
-"""
-
 # Terminal Sizing
 terminal_height, terminal_width = os.popen('stty size', 'r').read().split()
 
@@ -252,8 +235,6 @@ def parameters():
     # Arguments
     parser = argparse.ArgumentParser(prog="Packet.py",
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
-                                     description=textwrap.dedent(logo),
-                                     epilog=textwrap.dedent(epilog),
                                      allow_abbrev=False)
 
     parser.add_argument_group('Arguments', description=Parameter.Usage())

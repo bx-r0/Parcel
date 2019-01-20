@@ -1,6 +1,6 @@
 <img align="right" src="./parcel.png" width=175></img>
 # Parcel
-Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design to simulate common forms of network degradation.
+Lightweight packet manipulation script built on top of the Linux NFQUEUE. Designed to simulate common forms of network degradation.
 
 ## Effects
 - Latency
@@ -14,9 +14,7 @@ Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design
 - Saving to .pcap files
 - Filter by protocol
 
-</br>
-<a href="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y" target="_blank"><img src="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y.svg"/></a>
-
+## Demonstration <a href="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y" target="_blank"><img src="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y.svg"/></a>
 
 ## Install - Debian or Ubuntu
 

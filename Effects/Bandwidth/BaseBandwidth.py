@@ -4,7 +4,6 @@ import threading
 import os
 
 
-# TODO: Add ability to run the parent Effect.effect()
 class Bandwidth(Effect):
     """
     Class that deals with bandwidth functionality
@@ -156,32 +155,3 @@ class Bandwidth(Effect):
     def alter_bandwidth(self, new_value):
         """Used to change bandwidth variable for an outside location"""
         self.bandwidth = new_value
-
-    # -- Graphing
-    def graphing_setup(self):
-        # Graph with Rate x Time
-        if self.graph_type_num is 1:
-            self.graph.set_x_axis_label('Time (s)')
-            self.graph.set_y_axis_label('Rate (B/s)')
-
-    def graphing_effect(self, packet):
-        if self.graph_type_num is 1:
-            self.graph.add_points(self.get_elapsed_time(), self.rate)
-
-    def show_custom_graph(self):
-        # Graph with Rate x Time
-        if self.graph_type_num is 1:
-            self.graph.plot('r,-')
-
-    # -- Controls
-    def increase_effect(self):
-        step_value = 100
-
-        if self.bandwidth is not 0:
-            self.bandwidth += step_value
-
-    def decrease_effect(self):
-        step_value = 100
-
-        if self.bandwidth is not 0:
-            self.bandwidth -= step_value

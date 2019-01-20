@@ -45,7 +45,8 @@ class Surge(Effect):
         """Starts the timer that after the time period sends the batch of packets"""
 
         # Starts another thread
-        self.surge_job = threading.Timer(self.collection_period, self.surge_purge).start()
+        self.surge_job = threading.Timer(self.collection_period, self.surge_purge)
+        self.surge_job.start()
 
     def stop(self):
         """Stops the purge monitor job"""

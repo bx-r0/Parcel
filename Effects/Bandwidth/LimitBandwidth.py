@@ -14,8 +14,6 @@ class LimitBandwidth(Bandwidth):
     def custom_effect(self, packet):
         """Used to limit the bandwidth rate"""
 
-        self.default_graphing(packet)
-
         # Check if rate is over the limit
         self.packet_backlog.append(packet)
 

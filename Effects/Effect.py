@@ -1,9 +1,6 @@
 import time
-import Parameters
-from Plotting import Graph
-from scapy.all import *
-from Terminal import Terminal
-
+from scapy.layers.inet import IP
+from Utils.Terminal import Terminal
 
 class Effect:
     """Class that generally defines what an effect should contain
@@ -31,16 +28,6 @@ class Effect:
         self.graph_type_num = graph_type_num
         self.slimline = slimline
 
-        if self.graphing:
-
-            self.graph = Graph()
-            self.default_graphing_setup()
-
-            if show_output:
-                description = self.check_for_graph_type()
-                print("""[*] Graph number is \'{}\' and the description is: \n[*]\t\"{}\"""".
-                      format(self.graph_type_num, description))
-
         # --- Universal stats --- #
         # Every effect has a starting time
         self.start_time = time.time()
@@ -59,8 +46,6 @@ class Effect:
                 if self.gather_stats:
                     self.track_TCP_stats(packet)
 
-                # Shared functionality between all effects
-                self.default_graphing(packet)
 
             self.total_packets += 1
             self.print_stats()
@@ -76,21 +61,6 @@ class Effect:
         """[Blueprint] - Should print the custom stats for each method.
         Note Print_stats should call 'self.print()' to show any output """
         pass
-
-    def check_for_graph_type(self):
-        """This method checks for the graph number provided is valid"""
-        class_name = self.__class__.__name__
-
-        for x in Parameters.graph_descriptions:
-            graph = x
-
-            if graph.effect_name is class_name or graph.effect_name is None:
-                if graph.number is self.graph_type_num:
-                    return graph.description
-
-        # If a graph cannot be found
-        print('\n[ERROR] Invalid graph number provided\n')
-        exit(0)
 
     def get_elapsed_time(self):
         """Used to find out how long ago the effect started"""
@@ -112,95 +82,8 @@ class Effect:
         if self.accept_packet:
             packet.accept()
 
-    def default_graphing(self, packet):
-        """The main functionality for all the effects, where graphing is available"""
-
-        if self.graphing:
-            # Graph that tracks types of packets in the session
-            if self.graph_type_num is 0:
-                sections = str(packet).split(' ')
-                self.graph.increment_catagory(sections[0])
-
-            # Graph that processes total number of packets over time
-            elif self.graph_type_num is 10:
-                self.graph.add_points(self.get_elapsed_time(), self.total_packets)
-
-            # Total Retransmissions over time
-            elif self.graph_type_num is 100:
-                self.graph.add_points(self.get_elapsed_time(), self.retransmission)
-
-            # Each effects custom graphing
-            else:
-                self.graphing_effect(packet)
-
-    def default_graphing_setup(self):
-        """Used to init all axis and other variables required"""
-
-        if self.graphing:
-            # Graph that tracks types of packets in the session
-            if self.graph_type_num is 0:
-                self.graph.set_y_axis_label('Number of packets')
-
-            # Graph that processes total number of packets over time
-            elif self.graph_type_num is 10:
-                self.graph.set_x_axis_label('Time (s)')
-                self.graph.set_y_axis_label('Total Packets')
-
-                # Total Retransmissions over time
-            elif self.graph_type_num is 100:
-                self.graph.set_x_axis_label('Time (s)')
-                self.graph.set_y_axis_label('No of TCP Retransmission (Estimation)')
-
-            else:
-                self.graphing_setup()
-
-    def show_default_graphs(self):
-        # Graph that tracks types of packets in the session
-        if self.graph_type_num is 0:
-            self.graph.bar()
-
-        # Graph that processes total number of packets over time
-        elif self.graph_type_num is 10:
-            self.graph.plot('g,-')
-
-            # Total Retransmissions over time
-        elif self.graph_type_num is 100:
-            self.graph.plot('b,-')
-
-        else:
-            self.show_custom_graph()
-
-    def show_graph(self):
-        """Called to display any type of graph"""
-        self.show_default_graphs()
-
-    def save_graph(self):
-        """Will just save the graph to file"""
-        self.show_default_graphs()
-
-    def graphing_setup(self):
-        """[Blueprint] - Custom code for each effects graph setup"""
-        pass
-
-    def graphing_effect(self, packet):
-        """[Blueprint] - Function that contains custom graph effects"""
-        pass
-
-    def show_custom_graph(self):
-        """[Blueprint] - Each effect will change the behavior of this method to add it's own affects"""
-        pass
-
     def stop(self):
         """[Blueprint] - Called to stop the object"""
-        pass
-
-    # Variance
-    def increase_effect(self):
-        """[Blueprint] - Used to make the degradation higher """
-        pass
-
-    def decrease_effect(self):
-        """[Blueprint] - Used to make the degradation lower"""
         pass
 
     def check_packet_type(self, packet, target_packet):

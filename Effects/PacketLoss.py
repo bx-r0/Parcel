@@ -1,6 +1,5 @@
 from Effects.Effect import Effect
-from scapy.all import *
-
+import random
 
 class PacketLoss(Effect):
 
@@ -63,55 +62,3 @@ class PacketLoss(Effect):
                 self.accept(packet)
         else:
             self.accept(packet)
-
-    # --- Graphing
-    def graphing_setup(self):
-        """Performs all the necessary setup"""
-
-        # Tracks packet loss over time
-        if self.graph_type_num is 1:
-            self.graph.set_x_axis_label('Time (s)')
-            self.graph.set_y_axis_label('Packet Loss (%)')
-
-        # Total packets lost over time
-        elif self.graph_type_num is 2:
-            self.graph.set_x_axis_label('Time (s)')
-            self.graph.set_y_axis_label('Individual Packets Lost (No Of Packets)')
-
-    def graphing_effect(self, packet):
-        """Performs the data collecting for the graph"""
-
-        # Tracks packet loss over time
-        if self.graph_type_num is 1:
-            self.graph.add_points(self.get_elapsed_time(), self.dropped_percentage)
-
-        # Total packets lost over time
-        elif self.graph_type_num is 2:
-            self.graph.add_points(self.get_elapsed_time(), self.dropped_packets)
-
-    def show_custom_graph(self):
-        """Shows the custom graphs for the packet loss effect"""
-
-        # Percentage loss over time
-        if self.graph_type_num is 1:
-            self.graph.plot('r,-')
-
-        # Total packets lost over time
-        elif self.graph_type_num is 2:
-            self.graph.plot('y,-')
-
-    def increase_effect(self):
-        """Called when the 'e' key is pressed"""
-        increment_value = 1  # Changes by 1%
-
-        # Validation
-        if (self.packet_loss_percentage + increment_value) < 100:
-            self.packet_loss_percentage += increment_value
-
-    def decrease_effect(self):
-        """Called when the 'q' key is pressed"""
-        decrement_value = 1  # Changes by 1 %
-
-        # Validation - Checks if result would be non negative
-        if (self.packet_loss_percentage - decrement_value) > 0:
-            self.packet_loss_percentage -= decrement_value

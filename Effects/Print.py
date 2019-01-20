@@ -1,5 +1,5 @@
 from Effects.Effect import Effect
-from scapy.all import *
+from scapy.layers.inet import IP
 
 class Print(Effect):
 
@@ -11,7 +11,7 @@ class Print(Effect):
 
     def custom_effect(self, packet):
 
-        pkt = IP(packet.get_payload())
+        pkt =  IP(packet.get_payload())
 
         src = pkt[IP].src
         dst = pkt[IP].dst

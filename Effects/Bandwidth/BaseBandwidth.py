@@ -1,7 +1,6 @@
 from Effects.Effect import Effect
-import time
 import threading
-import os
+import time
 
 
 class Bandwidth(Effect):

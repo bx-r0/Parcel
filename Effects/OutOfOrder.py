@@ -2,8 +2,11 @@ from Effects.Effect import Effect
 import threading
 import random
 
-
 class Order(Effect):
+    """
+    TODO:
+    Code does not work as expected so it has been left out for the time being.
+    """
 
     def __init__(
                     self, 

@@ -1,5 +1,5 @@
 # User created imports
-from Effects import Print, OutOfOrder, Surge, PacketLoss, Latency
+from Effects import Print, Surge, PacketLoss, Latency
 from Effects.Bandwidth import DisplayBandwidth, LimitBandwidth
 
 import Utils.Parameters as Parameter
@@ -11,14 +11,10 @@ from scapy.layers.inet import IP
 import netfilterqueue
 
 from multiprocessing.pool import ThreadPool as Pool
-import subprocess
-import threading
 import argparse
-import textwrap
 import logging
 import signal
 import time
-import sys
 import os
 
 # Global variables

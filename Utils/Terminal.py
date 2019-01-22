@@ -9,14 +9,14 @@ class Terminal:
     def clear_line():
         """Prints a dynamic line that is used to clear any left over fragments from previous prints"""
 
-        h, w = Terminal.get_terminal_size()
+        _, w = Terminal.get_terminal_size()
         print('\r', ' ' * (w - 1), end='\r', flush=True)
 
     @staticmethod
     def print_sequence(seq, start='', end=''):
         """Used to print a dynamically sized sequence to the terminal"""
 
-        h, w = Terminal.get_terminal_size()
+        _, w = Terminal.get_terminal_size()
 
         seq_len = len(seq)
 

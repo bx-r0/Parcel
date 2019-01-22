@@ -11,18 +11,16 @@ class Bandwidth(Effect):
     - Displaying Bandwidth
     """
 
-    def __init__(self, bandwidth=0,
-                 accept_packets=True,
-                 show_output=True,
-                 graphing=False,
-                 gather_stats=True,
-                 graph_type_num=0):
+    def __init__(
+                    self, bandwidth=0,
+                    accept_packets=True,
+                    show_output=True
+                ):
 
-        super().__init__(accept_packets=accept_packets,
-                         show_output=show_output,
-                         graphing=graphing,
-                         gather_stats=gather_stats,
-                         graph_type_num=graph_type_num)
+        super().__init__(
+                            accept_packets=accept_packets,
+                            show_output=show_output
+                        )
 
         # Constants
         self.units = ['B', 'KB', 'MB', 'GB']
@@ -48,9 +46,6 @@ class Bandwidth(Effect):
         self.start_rate_update()
 
     def print_stats(self):
-        pass
-
-    def print_stats_test(self):
         """Stat output"""
 
         # Displays totals and rate in more relevant units
@@ -93,7 +88,7 @@ class Bandwidth(Effect):
         if elapsed > self.rate_update_period:
             self.rate = (self.transferred_since_check / elapsed)
 
-            self.print_stats_test()
+            self.print_stats()
 
             # Reset
             self.transferred_since_check = 0
@@ -106,7 +101,7 @@ class Bandwidth(Effect):
         elapsed = now - self.start
 
         self.rate = self.total_size / elapsed
-        self.print_stats_test()
+        self.print_stats()
 
     @staticmethod
     def calculate_packet_size(packet_name):

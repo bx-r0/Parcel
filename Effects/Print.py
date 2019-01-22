@@ -3,11 +3,16 @@ from scapy.layers.inet import IP
 
 class Print(Effect):
 
-    def __init__(self, accept_packets=True, show_output=True, graphing=False, graph_type_num=0):
-        super().__init__(accept_packets=accept_packets,
-                         show_output=show_output,
-                         graphing=graphing,
-                         graph_type_num=graph_type_num)
+    def __init__(
+                    self, 
+                    accept_packets=True, 
+                    show_output=True
+                ):
+
+        super().__init__(
+                            accept_packets=accept_packets,
+                            show_output=show_output
+                        )
 
     def custom_effect(self, packet):
 

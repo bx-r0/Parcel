@@ -3,13 +3,19 @@ from Effects.Bandwidth.BaseBandwidth import Bandwidth
 
 class LimitBandwidth(Bandwidth):
 
-    def __init__(self, bandwidth, accept_packets=True, show_output=True, graphing=False, gather_stats=False, graph_type_num=0):
-        super().__init__(bandwidth=bandwidth,
-                         accept_packets=accept_packets,
-                         show_output=show_output,
-                         graphing=graphing,
-                         gather_stats=gather_stats,
-                         graph_type_num=graph_type_num)
+    def __init__(   
+                    self, 
+                    bandwidth, 
+                    accept_packets=True, 
+                    show_output=True
+                ):
+        
+        
+        super().__init__(   
+                            bandwidth=bandwidth,
+                            accept_packets=accept_packets,
+                            show_output=show_output
+                        )
 
     def custom_effect(self, packet):
         """Used to limit the bandwidth rate"""

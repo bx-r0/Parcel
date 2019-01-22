@@ -6,11 +6,17 @@ import time
 class Surge(Effect):
     """Effect that groups together packets and sends them in one big group"""
 
-    def __init__(self, period, accept_packet=True, show_output=True, graphing=False, graph_type_num=0):
-        super().__init__(accept_packets=accept_packet,
-                         show_output=show_output,
-                         graphing=graphing,
-                         graph_type_num=graph_type_num)
+    def __init__(
+                    self, 
+                    period, 
+                    accept_packet=True, 
+                    show_output=True
+                ):
+
+        super().__init__(
+                            accept_packets=accept_packet,
+                            show_output=show_output
+                        )
 
         # General vars
         self.packet_pool = []
@@ -53,28 +59,3 @@ class Surge(Effect):
 
         self.surge_job.cancel()
         self.print('[!] Purge job stopped!')
-
-    # --- Graphing
-    def graphing_setup(self):
-        """Performs the setup for the custom graphs"""
-        pass
-
-    def graphing_effect(self, packet):
-        """Performs the data collecting for the graph"""
-        pass
-
-    def show_custom_graph(self):
-        """Called to display any type of graph"""
-        pass
-
-    # -- Controls
-    def increase_effect(self):
-        interval = 0.1
-
-        self.collection_period += interval
-
-    def decrease_effect(self):
-        interval = 0.1
-
-        if (self.collection_period - interval) > 0:
-            self.collection_period -= interval

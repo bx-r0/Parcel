@@ -3,18 +3,17 @@ import random
 
 class PacketLoss(Effect):
 
-    def __init__(self, percentage,
-                 accept_packets=True,
-                 show_output=True,
-                 graphing=False,
-                 gather_stats=True,
-                 graph_type_num=False):
+    def __init__(
+                    self, 
+                    percentage,
+                    accept_packets=True,
+                    show_output=True,
+                ):
 
-        super().__init__(accept_packets=accept_packets,
-                         show_output=show_output,
-                         graphing=graphing,
-                         gather_stats=gather_stats,
-                         graph_type_num=graph_type_num)
+        super().__init__(
+                            accept_packets=accept_packets,
+                            show_output=show_output
+                        )
 
         self.packet_loss_percentage = int(percentage)
         self.print('[*] Packet loss set to: {}%'.format(percentage), force=True)

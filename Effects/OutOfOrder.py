@@ -5,11 +5,16 @@ import random
 
 class Order(Effect):
 
-    def __init__(self, accept_packet=True, show_output=True, graphing=False, graph_type_num=0):
-        super().__init__(accept_packets=accept_packet,
-                         show_output=show_output,
-                         graphing=graphing,
-                         graph_type_num=graph_type_num)
+    def __init__(
+                    self, 
+                    accept_packet=True, 
+                    show_output=True, 
+                ):
+
+        super().__init__(
+                            accept_packets=accept_packet,
+                            show_output=show_output
+                        )
 
         # General vars
         self.send_interval = 1

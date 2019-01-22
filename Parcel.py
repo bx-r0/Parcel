@@ -37,10 +37,13 @@ terminal_height, terminal_width = os.popen('stty size', 'r').read().split()
 def print_packet(packet):
     """This function just prints the packet"""
 
-    if affect_packet(packet):
-        map_thread(effectObject.effect, [packet])
-    else:
-        packet.accept()
+    try:
+        if affect_packet(packet):
+            map_thread(effectObject.effect, [packet])
+        else:
+            packet.accept()
+    except:
+        print("XXX")
 
 def ignore_packet(packet):
     """Used to test the overhead of moving packets through the NFQUEUE"""
@@ -99,13 +102,17 @@ def setup_packet_save(filename):
 ########################################
 ##          Script handling           ##
 ########################################
+
+def thread_error_callback(e):
+    print(Exception(e))
+
 def map_thread(method, args):
     """Method that deals with the threading of the packet manipulation"""
 
     # If this try is caught, it occurs for every thread active so anything in the
     # except is triggered for all active threads
     try:
-        pool.map_async(method, args)
+        pool.map_async(method, args, error_callback=thread_error_callback)
     except Exception as e:
         print(e)
 
@@ -285,7 +292,7 @@ def parameters():
     if NFQUEUE_Active:
         run_packet_manipulation()
 
-def clean_close(signum='', frame=''):
+def clean_close(signum='', frame='', exitcode=0 ):
     """Used to close the script cleanly"""
 
     print_force('\n')
@@ -313,7 +320,7 @@ def clean_close(signum='', frame=''):
     except NameError:
         pass
 
-    os._exit(0)
+    os._exit(1)
     
 # Rebinds the all the close signals to clean_close the script
 signal.signal(signal.SIGINT, clean_close)   # Ctrl + C

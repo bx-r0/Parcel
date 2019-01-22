@@ -34,7 +34,7 @@ class Effect:
             self.print_stats()
             self.custom_effect(packet)
         except Exception as e:
-            print('Error in effect(): ', e)
+            raise(Exception(e))
 
     def custom_effect(self, packet):
         """Each effect will need it's own custom effect"""

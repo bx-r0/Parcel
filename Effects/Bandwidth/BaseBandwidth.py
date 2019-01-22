@@ -145,7 +145,3 @@ class Bandwidth(Effect):
     def start_rate_update(self):
         """Used to start the thread that updates the rate of transfer"""
         threading.Timer(self.rate_update_period, self.calculate_rate_job).start()
-
-    def alter_bandwidth(self, new_value):
-        """Used to change bandwidth variable for an outside location"""
-        self.bandwidth = new_value

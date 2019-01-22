@@ -1,5 +1,8 @@
 <img align="right" src="./parcel.png" width=175></img>
 # Parcel
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfce2c825f44424c969e888c3ebfc90a)](https://app.codacy.com/app/AidanFray/Parcel?utm_source=github.com&utm_medium=referral&utm_content=AidanFray/Parcel&utm_campaign=Badge_Grade_Dashboard)
+
 Lightweight packet manipulation script built on top of the Linux NFQUEUE. Designed to simulate common forms of network degradation.
 
 ## Effects

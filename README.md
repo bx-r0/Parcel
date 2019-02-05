@@ -17,8 +17,6 @@ Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design
 - Saving to .pcap files
 - Filter by protocol
 
-## Demonstration <a href="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y" target="_blank"><img src="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y.svg"/></a>
-
 ## Install - Debian or Ubuntu
 
 ```

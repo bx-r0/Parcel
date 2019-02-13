@@ -16,8 +16,6 @@ class Print(Effect):
 
     def custom_effect(self, packet):
 
-        raise(Exception("Print error!"))
-
         pkt =  IP(packet.get_payload())
 
         src = pkt[IP].src

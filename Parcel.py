@@ -37,13 +37,10 @@ terminal_height, terminal_width = os.popen('stty size', 'r').read().split()
 def print_packet(packet):
     """This function just prints the packet"""
 
-    try:
-        if affect_packet(packet):
-            map_thread(effectObject.effect, [packet])
-        else:
-            packet.accept()
-    except:
-        print("XXX")
+    if affect_packet(packet):
+        map_thread(effectObject.effect, [packet])
+    else:
+        packet.accept()
 
 def ignore_packet(packet):
     """Used to test the overhead of moving packets through the NFQUEUE"""

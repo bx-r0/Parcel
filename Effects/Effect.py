@@ -1,5 +1,3 @@
-import time
-from scapy.layers.inet import IP
 from Utils.Terminal import Terminal
 
 class Effect:

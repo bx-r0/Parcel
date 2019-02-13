@@ -17,8 +17,6 @@ Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design
 - Saving to .pcap files
 - Filter by protocol
 
-## Demonstration <a href="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y" target="_blank"><img src="https://asciinema.org/a/HBbyLMCF6LjJF9dZE2hZspz4y.svg"/></a>
-
 ## Install - Debian or Ubuntu
 
 ```
@@ -51,36 +49,20 @@ To filter for certain packets for a certain protocol the ```-tp``` is used:
 # Usage
 
 ```
-## ---- Effects:
+EFFECTS
+Only one effect can be selected 
 
---print, -p                                  
-    * Prints all the packets
+-p                      Prints all the packets
+-i                      Does nothing to the packets. Used to show how much default overhead there is
+-b                      Displays information on the transfer rate
+-l    <delay_ms>        Applies latency on the connection   
+-pl   <percentage>      Performs packet loss on the connection
+-t    <delay_ms>        Creates a packet surge on a connection by the given delay 
+-rl   <rate_bytes>      Limits the throughput of the program
     
---ignore, -i
-    * Does nothing to the packets. Used to show how much overhead there
-    by default
-    
---display-bandwidth, -b                     
-    * Displays information on the transfer rate
-      
---latency, -l <delay_ms>            
-    * Applies latency on the connection   
-    
---packet-loss, -pl  <loss_percentage>  
-    * Performs packet loss on the connection
+OPTIONS 
+Can be used with any effect
 
---surge, -t      <delay_ms> 
-    * Creates a packet surge on a connection by the given delay 
-
---rate-limit, -rl   <rate_bytes>            
-    * Limits the throughput of the program
-    
-## ---- Extra Optionals:
-
---target-packet, -tp    <packet-type>        
-    * Only performs an effect on the specified packet type
-
---save, -s              <filename>
-    * Tells the program to start saving all the packets that run through the system
-    
+-tp   <packet-type>     Only performs an effect on the specified packet type
+ -s   <filename>         Saves all collected packets into a .pcap file
 ```

@@ -21,14 +21,14 @@ Lightweight packet manipulation script built on top of the Linux NFQUEUE. Design
 
 ```
 sudo apt-get install build-essential python-dev libnetfilter-queue-dev
-sudo python Setup.py install
+sudo pip install -r requirements.txt
 ```
 
 ## Install - Arch
 
 Install ```aur/python-netfilterqueue-git``` https://aur.archlinux.org/packages/python-netfilterqueue-git/
 
-```sudo python Setup.py install```
+```sudo pip install -r requirements.txt```
 
 
 ## Get started

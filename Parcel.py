@@ -113,11 +113,6 @@ def map_thread(method, args):
     except Exception as e:
         print(e)
 
-def print_force(message):
-    """This method is required because when this python file is called as a script
-    the prints don't appear and a flush is required """
-    print(message, flush=True)
-
 def affect_packet(packet):
     """This function checks if the packet should be affected or not. This is part of the -t option"""
 
@@ -155,7 +150,7 @@ def run_packet_manipulation():
         # Needed if the machine is being used as a proxy         
         #os.system("iptables -A FORWARD -j NFQUEUE") # Packets for forwarding or other routes
 
-        print_force("[*] Mode is: " + mode.__name__)
+        print("[*] Mode is: " + mode.__name__)
 
         # Setup for the NQUEUE
         nfqueue = netfilterqueue.NetfilterQueue()
@@ -163,11 +158,11 @@ def run_packet_manipulation():
         try:
             nfqueue.bind(0, mode)  # 0 is the default NFQUEUE
         except OSError:
-            print_force("[!] Queue already created")
+            print("[!] Queue already created")
 
         # Shows the start waiting message
         Terminal.print_sequence('=', start='[*]', end='[*]')
-        print_force("[*] Waiting ")
+        print("[*] Waiting ")
         nfqueue.run()
 
     except KeyboardInterrupt:
@@ -199,6 +194,7 @@ def parameters():
 
     effect.add_argument('--print', Parameter.cmd_print,
                         action='store_true',
+                        dest="output",
                         help=argparse.SUPPRESS)
 
     effect.add_argument('--ignore', '-i',
@@ -245,7 +241,7 @@ def parameters():
     args = parser.parse_args()
 
     # Modes
-    if args.print:
+    if args.output:
 
         effectObject = Print.Print()
         mode = print_packet
@@ -276,7 +272,7 @@ def parameters():
         mode = limit_bandwidth
 
     if args.save:
-        print_force(
+        print(
             '[!] File saving on - Files will be saved under: \'{}.pcap\''.format(args.save[0]))
 
         save_active = True
@@ -292,28 +288,28 @@ def parameters():
 def clean_close(signum='', frame='', exitcode=0 ):
     """Used to close the script cleanly"""
 
-    print_force('\n')
-    print_force("[*] ## Close signal recieved ##")
+    print('\n')
+    print("[*] ## Close signal recieved ##")
     effectObject.stop()
 
     try:
         if NFQUEUE_Active:
 
             pool.close()
-            print_force("[!] Thread pool killed")
+            print("[!] Thread pool killed")
 
             # Resets
-            print_force("[!] iptables reverted")
+            print("[!] iptables reverted")
             os.system("iptables -F")
 
-            print_force("[!] NFQUEUE unbinded")
+            print("[!] NFQUEUE unbinded")
             nfqueue.unbind()
 
             if arp_active:
-                print_force('[!] Arp Spoofing stopped!')
+                print('[!] Arp Spoofing stopped!')
                 arp_process.terminate()
 
-            print_force('[!] ## Script Stopped ##')
+            print('[!] ## Script Stopped ##')
     except NameError:
         pass
 

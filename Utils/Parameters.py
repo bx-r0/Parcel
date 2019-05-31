@@ -20,36 +20,21 @@ cmd_arp_spam = '-as'
 
 def Usage():
     return"""
-## ---- Effects:
+EFFECTS
+Only one effect can be selected 
 
---print, -p                                  
-    * Prints all the packets
-    
---ignore, -i
-    * Does nothing to the packets. Used to show how much overhead there
-    by default
-    
---display-bandwidth, -b                     
-    * Displays information on the transfer rate
-      
---latency, -l <delay_ms>            
-    * Applies latency on the connection   
-    
---packet-loss, -pl  <loss_percentage>  
-    * Performs packet loss on the connection
+    -p                      Prints all the packets
+    -i                      Does nothing to the packets. Used to show how much default overhead there is
+    -b                      Displays information on the transfer rate
+    -l    <delay_ms>        Applies latency on the connection   
+    -pl   <percentage>      Performs packet loss on the connection
+    -t    <delay_ms>        Creates a packet surge on a connection by the given delay 
+    -rl   <rate_bytes>      Limits the throughput of the program
+        
+    OPTIONS 
+    Can be used with any effect
 
---surge, -t      <delay_ms> 
-    * Creates a packet surge on connection by the given delay 
+    -tp   <packet-type>     Only performs an effect on the specified packet type
+    -s   <filename>         Saves all collected packets into a .pcap file
 
---rate-limit, -rl   <rate_bytes>            
-    * Limits the throughput of the program
-
-## ---- Extra Optionals:
-
---target-packet, -tp    <packet-type>        
-    * Only performs an affect on the specified packet type
-
---save, -s              <filename>
-    * Tells the program to start saving all the packets that run through the system
-    
 """

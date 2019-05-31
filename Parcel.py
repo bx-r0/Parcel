@@ -15,6 +15,7 @@ import argparse
 import logging
 import signal
 import time
+import sys
 import os
 
 # Global variables
@@ -322,7 +323,7 @@ signal.signal(signal.SIGTSTP, clean_close)  # Ctrl + Z
 
 # Check if user is root
 if os.getuid() != 0:
-    exit("Error: User needs to be root to run this script")
+    sys.exit("Error: User needs to be root to run this script")
 
 if __name__ == "__main__":
     Terminal.print_sequence('=', start='[*]', end='[*]')

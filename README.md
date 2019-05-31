@@ -5,33 +5,44 @@
 
 Lightweight packet manipulation script built on top of the Linux NFQUEUE. Designed to simulate common forms of network degradation.
 
-## Effects
+Effects
 - Latency
 - Packet loss
 - Restricted bandwidth
 - Packet surges
 
-## Extra features
+Extra features
 - Printing packets
 - Display current bandwidth
 - Saving to .pcap files
 - Filter by protocol
 
-## Install - Debian or Ubuntu
+# Installation
+
+## Method 1 - Pre-compiled Binary (Recommended)
+
+Download the pre-compiled binary
+
+[64-bit](https://github.com/AidanFray/Parcel/releases/download/1.0/Parcel64)
+
+[32-bit]()
+
+## Method 2 - Install and run using Python
+
+### Install - Debian or Ubuntu
 
 ```
 sudo apt-get install build-essential python-dev libnetfilter-queue-dev
 sudo pip install -r requirements.txt
 ```
 
-## Install - Arch
+### Install - Arch
 
 Install ```aur/python-netfilterqueue-git``` https://aur.archlinux.org/packages/python-netfilterqueue-git/
 
 ```sudo pip install -r requirements.txt```
 
-
-## Get started
+## Usage
 
 Run ```sudo Parcel.py -h ``` for the usage
 
